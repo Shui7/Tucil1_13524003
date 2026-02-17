@@ -7,6 +7,8 @@ import java.net.URL;
 import java.util.InputMismatchException;
 import java.util.ResourceBundle;
 
+import javax.imageio.ImageIO;
+
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -22,11 +24,13 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.embed.swing.SwingFXUtils;
 
 enum charToColor {
     A("#ff0000"),
@@ -540,7 +544,7 @@ public class Controller implements Initializable {
         }
     }
 
-    public void save(ActionEvent event) {
+    public void saveTxt(ActionEvent event) {
         String toSave = textSolution.getText();
 
         if(toSave.equals("")) {
@@ -564,6 +568,37 @@ public class Controller implements Initializable {
                 fileWriter.write(toSave);
                 textStatusLeft.setText(String.format("File saved: %s", filePath));
             }
+
+        } catch(IllegalArgumentException | InputMismatchException | IOException e) {
+            textStatusLeft.setText("Error: " + e.getMessage());
+        } catch(NullPointerException e) {}
+    }
+
+    public void savePng(ActionEvent event) {
+        WritableImage toSave = grid.snapshot(null, null);
+
+        if(toSave == null) {
+            textStatusLeft.setText("Error: No solution to save");
+            return;
+        }
+
+        try {
+            FileChooser fileChooser = new FileChooser();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            
+            String fileName = fileNameInserted;
+            String fileNamePng = fileName.substring(0, fileName.length() - 4) + ".png";
+            fileChooser.setInitialFileName(String.format("[Solution] %s", fileNamePng));
+            File f = fileChooser.showSaveDialog(stage);
+            String filePath = f.getAbsolutePath();
+            if(!filePath.endsWith(".png")) {
+                filePath += ".png";
+                f = new File(filePath);
+            }
+            
+            if(!ImageIO.write(SwingFXUtils.fromFXImage(toSave, null), "png", f)) throw new IOException("Failed to save");
+            
+            textStatusLeft.setText(String.format("File saved: %s", filePath));
 
         } catch(IllegalArgumentException | InputMismatchException | IOException e) {
             textStatusLeft.setText("Error: " + e.getMessage());

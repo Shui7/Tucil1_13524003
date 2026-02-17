@@ -49,224 +49,224 @@ public class Algorithm {
         return result;
     }
 
-    public static int[][] solve(Matrix board, boolean showStep) {
-        long startTime = System.nanoTime();
-        int n = board.getRow();
+    // public static int[][] solve(Matrix board, boolean showStep) {
+    //     long startTime = System.nanoTime();
+    //     int n = board.getRow();
 
-        // Initialize queens' position, (0, -1) being the default position (not placed yet)
-        int[][] position = new int[n][2];
-        for(int i = 0; i < n; i++) {
-            position[i][0] = 0;
-            position[i][1] = -1;
-        }
+    //     // Initialize queens' position, (0, -1) being the default position (not placed yet)
+    //     int[][] position = new int[n][2];
+    //     for(int i = 0; i < n; i++) {
+    //         position[i][0] = 0;
+    //         position[i][1] = -1;
+    //     }
 
-        int placed = 0;
+    //     int placed = 0;
         
-        // Candidate position to place the next queen
-        int newX = 0;
-        int newY = -1;
-        boolean possible = true;
+    //     // Candidate position to place the next queen
+    //     int newX = 0;
+    //     int newY = -1;
+    //     boolean possible = true;
 
-        while(placed < n && possible) {
-            // System.out.print("\n\n");
+    //     while(placed < n && possible) {
+    //         // System.out.print("\n\n");
 
-            // Increment algorithm so it doesn't overflow beyond board's size
-            newY++;
-            if(newY >= n) {
-                newY = 0;
-                newX += 1;
-            }
-            if(newX >= n) {
-                placed--;
-                if(placed < 0) {
-                    possible = false;
-                    break;
-                }
-                if(placed >= 0) {
-                    newX = position[placed][0];
-                    newY = position[placed][1];
-                    position[placed][0] = 0;
-                    position[placed][1] = -1;
-                }
-                continue;
-            }
+    //         // Increment algorithm so it doesn't overflow beyond board's size
+    //         newY++;
+    //         if(newY >= n) {
+    //             newY = 0;
+    //             newX += 1;
+    //         }
+    //         if(newX >= n) {
+    //             placed--;
+    //             if(placed < 0) {
+    //                 possible = false;
+    //                 break;
+    //             }
+    //             if(placed >= 0) {
+    //                 newX = position[placed][0];
+    //                 newY = position[placed][1];
+    //                 position[placed][0] = 0;
+    //                 position[placed][1] = -1;
+    //             }
+    //             continue;
+    //         }
 
-            // Print board with placed queens, queens' position is denoted as '#'
-            if(showStep) {
-                Matrix newBoard = new Matrix(board);
-                for(int i = 0; i < n; i++) {
-                    if(position[i][1] == -1) break;
-                    newBoard.setElmt('#', position[i][0], position[i][1]);
-                }
-                newBoard.setElmt('#', newX, newY);
-                System.out.print(newBoard);
-            }
+    //         // Print board with placed queens, queens' position is denoted as '#'
+    //         if(showStep) {
+    //             Matrix newBoard = new Matrix(board);
+    //             for(int i = 0; i < n; i++) {
+    //                 if(position[i][1] == -1) break;
+    //                 newBoard.setElmt('#', position[i][0], position[i][1]);
+    //             }
+    //             newBoard.setElmt('#', newX, newY);
+    //             System.out.print(newBoard);
+    //         }
 
-            // Check if the candidate position is valid
-            // Valid: record the position in the position array
-            // Not valid: do nothing
-            if(isValid(board, position, newX, newY)) {
-                position[placed][0] = newX;
-                position[placed][1] = newY;
-                placed++;
-            }
+    //         // Check if the candidate position is valid
+    //         // Valid: record the position in the position array
+    //         // Not valid: do nothing
+    //         if(isValid(board, position, newX, newY)) {
+    //             position[placed][0] = newX;
+    //             position[placed][1] = newY;
+    //             placed++;
+    //         }
 
-            // Delay per iteration, adjustable (soon)
-            try {
-                Thread.sleep(0);
-            } catch (InterruptedException ie) {
-                Thread.currentThread().interrupt();
-            }   
-        }
+    //         // Delay per iteration, adjustable (soon)
+    //         try {
+    //             Thread.sleep(0);
+    //         } catch (InterruptedException ie) {
+    //             Thread.currentThread().interrupt();
+    //         }   
+    //     }
 
-        if(possible) {
+    //     if(possible) {
             
-            System.out.println("Possible to solve! Solution:");
-            for(int i = 0; i < n; i++) {
-                System.out.printf("Pos %d: (%d,%d)\n", i+1, position[i][0], position[i][1]);
-            }
-        }
-        else {
-            System.out.println("Not possible to solve!");
-        }
+    //         System.out.println("Possible to solve! Solution:");
+    //         for(int i = 0; i < n; i++) {
+    //             System.out.printf("Pos %d: (%d,%d)\n", i+1, position[i][0], position[i][1]);
+    //         }
+    //     }
+    //     else {
+    //         System.out.println("Not possible to solve!");
+    //     }
 
-        long endTime = System.nanoTime();
-        String time = Long.toString(endTime - startTime);
-        System.out.print("Calculation time: ");
-        // To get accurate time without floating point error
-        for(int i = 0; i < time.length(); i++) {
-            System.out.print(time.charAt(i));
-            if(time.length() - i == 7) System.out.print('.');
-        }
-        System.out.println(" milliseconds");
-        Matrix newBoard = new Matrix(board);
-        for(int i = 0; i < n; i++) {
-            if(position[i][1] == -1) break;
-            newBoard.setElmt('#', position[i][0], position[i][1]);
-        }
-        newBoard.setElmt('#', newX, newY);
-        System.out.print(newBoard);
+    //     long endTime = System.nanoTime();
+    //     String time = Long.toString(endTime - startTime);
+    //     System.out.print("Calculation time: ");
+    //     // To get accurate time without floating point error
+    //     for(int i = 0; i < time.length(); i++) {
+    //         System.out.print(time.charAt(i));
+    //         if(time.length() - i == 7) System.out.print('.');
+    //     }
+    //     System.out.println(" milliseconds");
+    //     Matrix newBoard = new Matrix(board);
+    //     for(int i = 0; i < n; i++) {
+    //         if(position[i][1] == -1) break;
+    //         newBoard.setElmt('#', position[i][0], position[i][1]);
+    //     }
+    //     newBoard.setElmt('#', newX, newY);
+    //     System.out.print(newBoard);
 
-        return position;
-    }
+    //     return position;
+    // }
 
-    static void exhaustiveSolve(Matrix board, boolean showStep, Result result) {
-        long startTime = System.nanoTime();
-        int n = board.getRow();
-        int cases = 1;
+    // static void exhaustiveSolve(Matrix board, boolean showStep, Result result) {
+    //     long startTime = System.nanoTime();
+    //     int n = board.getRow();
+    //     int cases = 1;
 
-        // Initialize queens' position on first iteration
-        int[][] position = new int[n][2];
-        for(int i = 0; i < n; i++) {
-            position[i][0] = i;
-            position[i][1] = 0;
-        }
+    //     // Initialize queens' position on first iteration
+    //     int[][] position = new int[n][2];
+    //     for(int i = 0; i < n; i++) {
+    //         position[i][0] = i;
+    //         position[i][1] = 0;
+    //     }
 
-        int placed = n;
-        int toMove = n-1; // Last queen moving first
+    //     int placed = n;
+    //     int toMove = n-1; // Last queen moving first
         
-        // Candidate position to place the next queen
-        boolean possible = true;
+    //     // Candidate position to place the next queen
+    //     boolean possible = true;
 
-        while(toMove < n && possible) {
-            // Check if the position is valid
-            // Valid: current position is solution
-            // Not valid: iterate more
-            // Only check when all queens are placed
-            if(placed == n) {
-                if(isValidAll(board, position)) {
-                    break;
-                }
-                cases++;
-                // Print board with placed queens, queens' position is denoted as '#'
-                if(showStep) {
-                    Matrix newBoard = new Matrix(board);
-                    for(int i = 0; i < n; i++) {
-                        if(position[i][1] == -1) break;
-                        newBoard.setElmt('#', position[i][1], position[i][0]);
-                    }
-                    System.out.print(newBoard);
-                }
-            }
+    //     while(toMove < n && possible) {
+    //         // Check if the position is valid
+    //         // Valid: current position is solution
+    //         // Not valid: iterate more
+    //         // Only check when all queens are placed
+    //         if(placed == n) {
+    //             if(isValidAll(board, position)) {
+    //                 break;
+    //             }
+    //             cases++;
+    //             // Print board with placed queens, queens' position is denoted as '#'
+    //             if(showStep) {
+    //                 Matrix newBoard = new Matrix(board);
+    //                 for(int i = 0; i < n; i++) {
+    //                     if(position[i][1] == -1) break;
+    //                     newBoard.setElmt('#', position[i][1], position[i][0]);
+    //                 }
+    //                 System.out.print(newBoard);
+    //             }
+    //         }
 
-            int newX = position[toMove][0];
-            int newY = position[toMove][1];
+    //         int newX = position[toMove][0];
+    //         int newY = position[toMove][1];
 
-            if(newX == -1) {
-                newX = position[toMove-1][0];
-                newY = position[toMove-1][1];
-                placed++;
-            }
+    //         if(newX == -1) {
+    //             newX = position[toMove-1][0];
+    //             newY = position[toMove-1][1];
+    //             placed++;
+    //         }
 
-            // Increment algorithm so it doesn't overflow beyond board's size
-            newX++;
-            if(newX >= n) {
-                newX = 0;
-                newY += 1;
-            }
-            if(newY >= n) {
-                // Remove from board
-                position[toMove][0] = -1;
-                position[toMove][1] = 0;
-                placed--;
-                toMove--;
-                if(toMove < 0) {
-                    possible = false;
-                    break;
-                }
-                continue;
-            }
-            else {
-                position[toMove][0] = newX;
-                position[toMove][1] = newY;
-            }
+    //         // Increment algorithm so it doesn't overflow beyond board's size
+    //         newX++;
+    //         if(newX >= n) {
+    //             newX = 0;
+    //             newY += 1;
+    //         }
+    //         if(newY >= n) {
+    //             // Remove from board
+    //             position[toMove][0] = -1;
+    //             position[toMove][1] = 0;
+    //             placed--;
+    //             toMove--;
+    //             if(toMove < 0) {
+    //                 possible = false;
+    //                 break;
+    //             }
+    //             continue;
+    //         }
+    //         else {
+    //             position[toMove][0] = newX;
+    //             position[toMove][1] = newY;
+    //         }
 
-            if(toMove < n-1) {
-                toMove++;
-                continue;
-            }
+    //         if(toMove < n-1) {
+    //             toMove++;
+    //             continue;
+    //         }
 
-            // Delay per iteration, adjustable (soon)
-            try {
-                Thread.sleep(0);
-            } catch (InterruptedException ie) {
-                Thread.currentThread().interrupt();
-            }   
-        }
+    //         // Delay per iteration, adjustable (soon)
+    //         try {
+    //             Thread.sleep(0);
+    //         } catch (InterruptedException ie) {
+    //             Thread.currentThread().interrupt();
+    //         }   
+    //     }
 
-        if(possible) {
-            System.out.println("Possible to solve! Solution:");
-            for(int i = 0; i < n; i++) {
-                System.out.printf("Pos %d: (%d,%d)\n", i+1, position[i][0], position[i][1]);
-            }
-        }
-        else {
-            System.out.println("Not possible to solve!");
-            for(int i = 0; i < n; i++) {
-                position[i][0] = -1;
-                position[i][1] = 0;
-            }
-        }
+    //     if(possible) {
+    //         System.out.println("Possible to solve! Solution:");
+    //         for(int i = 0; i < n; i++) {
+    //             System.out.printf("Pos %d: (%d,%d)\n", i+1, position[i][0], position[i][1]);
+    //         }
+    //     }
+    //     else {
+    //         System.out.println("Not possible to solve!");
+    //         for(int i = 0; i < n; i++) {
+    //             position[i][0] = -1;
+    //             position[i][1] = 0;
+    //         }
+    //     }
 
-        long endTime = System.nanoTime();
-        long time = endTime - startTime;
-        String timeText = Long.toString(time);
-        System.out.print("Calculation time: ");
-        // To get accurate time without floating point error
-        for(int i = 0; i < timeText.length(); i++) {
-            System.out.print(timeText.charAt(i));
-            if(timeText.length() - i == 7) System.out.print('.');
-        }
-        System.out.println(" milliseconds");
-        Matrix newBoard = new Matrix(board);
-        for(int i = 0; i < n; i++) {
-            if(position[i][1] == -1) break;
-            newBoard.setElmt('#', position[i][1], position[i][0]);
-        }
-        System.out.print(newBoard);
+    //     long endTime = System.nanoTime();
+    //     long time = endTime - startTime;
+    //     String timeText = Long.toString(time);
+    //     System.out.print("Calculation time: ");
+    //     // To get accurate time without floating point error
+    //     for(int i = 0; i < timeText.length(); i++) {
+    //         System.out.print(timeText.charAt(i));
+    //         if(timeText.length() - i == 7) System.out.print('.');
+    //     }
+    //     System.out.println(" milliseconds");
+    //     Matrix newBoard = new Matrix(board);
+    //     for(int i = 0; i < n; i++) {
+    //         if(position[i][1] == -1) break;
+    //         newBoard.setElmt('#', position[i][1], position[i][0]);
+    //     }
+    //     System.out.print(newBoard);
 
-        result.position = position;
-        result.calculationTime = time;
-        result.cases = cases;
-    }
+    //     result.position = position;
+    //     result.calculationTime = time;
+    //     result.cases = cases;
+    // }
 }

@@ -7,48 +7,48 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Input {
-    public static String inputFileName(Scanner scanner) {
-        System.out.print("Nama file: ");
-        String string;
-        string = scanner.nextLine();
-        System.out.println("File name entered: " + string);
+    // public static String inputFileName(Scanner scanner) {
+    //     System.out.print("Nama file: ");
+    //     String string;
+    //     string = scanner.nextLine();
+    //     System.out.println("File name entered: " + string);
 
-        return string;
-    }
+    //     return string;
+    // }
 
-    public static boolean inputShowStepChoice(Scanner scanner) {
-        System.out.print("Perlihatkan langkah? (Y/N): ");
-        String string;
-        while(true) {
-            string = scanner.nextLine();
-            if(!string.equalsIgnoreCase("y") && !string.equalsIgnoreCase("n")) throw new InputMismatchException("pilihan salah!");
-            else {
-                return string.equalsIgnoreCase("y");
-            }
-        }
-    }
+    // public static boolean inputShowStepChoice(Scanner scanner) {
+    //     System.out.print("Perlihatkan langkah? (Y/N): ");
+    //     String string;
+    //     while(true) {
+    //         string = scanner.nextLine();
+    //         if(!string.equalsIgnoreCase("y") && !string.equalsIgnoreCase("n")) throw new InputMismatchException("pilihan salah!");
+    //         else {
+    //             return string.equalsIgnoreCase("y");
+    //         }
+    //     }
+    // }
 
-    public static String inputFile(String fileName) {
-        File f = new File(fileName);
-        String result = "";
+    // public static String inputFile(String fileName) {
+    //     File f = new File(fileName);
+    //     String result = "";
 
-        try(Scanner scanner = new Scanner(f)) {
-            if(!scanner.hasNextLine()) throw new InputMismatchException("file kosong");
-            while(scanner.hasNextLine()) {
-                result += scanner.nextLine();
-            }
-            if(!result.matches("^[a-zA-Z]+$")) {
-                result = "";
-                throw new InputMismatchException("ada karakter bukan alfabet dalam file");
-            } 
-        } catch(FileNotFoundException e) {
-            System.out.println("File tidak ditemukan.");
-        } catch(InputMismatchException e) {
-            System.out.println("Error: " + e.getMessage());
-        }
+    //     try(Scanner scanner = new Scanner(f)) {
+    //         if(!scanner.hasNextLine()) throw new InputMismatchException("file kosong");
+    //         while(scanner.hasNextLine()) {
+    //             result += scanner.nextLine();
+    //         }
+    //         if(!result.matches("^[a-zA-Z]+$")) {
+    //             result = "";
+    //             throw new InputMismatchException("ada karakter bukan alfabet dalam file");
+    //         } 
+    //     } catch(FileNotFoundException e) {
+    //         System.out.println("File tidak ditemukan.");
+    //     } catch(InputMismatchException e) {
+    //         System.out.println("Error: " + e.getMessage());
+    //     }
 
-        return result;
-    }
+    //     return result;
+    // }
 
     public static String inputFile(File f) {
         String result = "";
@@ -110,39 +110,39 @@ public class Input {
         return m;
     }
 
-    public static Matrix inputMatrix(String filename) {
-        File f = new File(filename);
-        Matrix m;
+    // public static Matrix inputMatrix(String filename) {
+    //     File f = new File(filename);
+    //     Matrix m;
 
-        try(Scanner scanner = new Scanner(f)) {
-            // Check the dimension of the matrix
-            int row;
-            int col;
-            try (Scanner dimensionScanner = new Scanner(f)) {
-                if(!dimensionScanner.hasNextLine()) throw new InputMismatchException("file kosong");
-                col = dimensionScanner.nextLine().toCharArray().length;
-                row = 1;
-                while(dimensionScanner.hasNextLine()) {
-                    row++;
-                    dimensionScanner.nextLine();
-                }
-            }
+    //     try(Scanner scanner = new Scanner(f)) {
+    //         // Check the dimension of the matrix
+    //         int row;
+    //         int col;
+    //         try (Scanner dimensionScanner = new Scanner(f)) {
+    //             if(!dimensionScanner.hasNextLine()) throw new InputMismatchException("file kosong");
+    //             col = dimensionScanner.nextLine().toCharArray().length;
+    //             row = 1;
+    //             while(dimensionScanner.hasNextLine()) {
+    //                 row++;
+    //                 dimensionScanner.nextLine();
+    //             }
+    //         }
 
-            m = new Matrix(row, col);
-            for(int i = 0; i < row; i++) {
-                char[] input = scanner.nextLine().toCharArray();
-                for(int j = 0; j < col; j++) {
-                    m.setElmt(input[j], i, j);
-                }
-            }
-        } catch(FileNotFoundException e) {
-            System.out.println("File tidak ditemukan.");
-            m = new Matrix(0,0);
-        } catch(InputMismatchException e) {
-            System.out.println("Error: " + e.getMessage());
-            m = new Matrix(0,0);
-        }
+    //         m = new Matrix(row, col);
+    //         for(int i = 0; i < row; i++) {
+    //             char[] input = scanner.nextLine().toCharArray();
+    //             for(int j = 0; j < col; j++) {
+    //                 m.setElmt(input[j], i, j);
+    //             }
+    //         }
+    //     } catch(FileNotFoundException e) {
+    //         System.out.println("File tidak ditemukan.");
+    //         m = new Matrix(0,0);
+    //     } catch(InputMismatchException e) {
+    //         System.out.println("Error: " + e.getMessage());
+    //         m = new Matrix(0,0);
+    //     }
 
-        return m;
-    }
+    //     return m;
+    // }
 }
