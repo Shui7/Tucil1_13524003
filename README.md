@@ -24,7 +24,7 @@ mvn javafx:run
 Terdapat tiga cara untuk memasukkan konfigurasi papan gim.
 
 - Masukkan banyak queen atau ukuran papan (n x n) pada bidang teks "By number of queens:" dan tekan tombol "Enter". Lalu, klik sel pada bagian tengah program untuk mengganti warnanya sesuai keinginan.
-- Masukkan konfigurasi papan pada bidang teks "By text:" dengan format setiap karakter adalah alfabet kapital berbentuk persegi dan tekan tombol "Enter". Contoh konfigurasi papan:
+- Masukkan konfigurasi papan pada bidang teks "By text:" dengan format setiap karakter adalah alfabet kapital berbentuk persegi yang tiap alfabet merepresentasikan warna yang berbeda. Lalu, tekan tombol "Enter". Contoh konfigurasi papan:
 ```
 CABB
 CABB
