@@ -1,0 +1,7 @@
+C#BB
+CAB#
+#AAA
+AA#D
+
+Waktu pencarian: 13.156016 ms
+Banyak kasus yang ditinjau: 741 kasus

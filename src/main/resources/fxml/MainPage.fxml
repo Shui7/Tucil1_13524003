@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="644.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stima.modules.Controller">
+  <children>
+    <MenuBar VBox.vgrow="NEVER">
+      <menus>
+        <Menu mnemonicParsing="false" text="File">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Quit" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="About">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Created By:" />
+                  <MenuItem mnemonicParsing="false" text="Faiq Azzam Nafidz" />
+                  <MenuItem mnemonicParsing="false" text="13524003" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+    <SplitPane dividerPositions="0.23864574731626753, 0.6793971924029727" focusTraversable="true" maxWidth="1.7976931348623157E308" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+      <items>
+        <AnchorPane>
+          <children>
+            <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Inputs" textAlignment="CENTER" wrapText="false">
+              <font>
+                <Font size="18.0" fx:id="x1" />
+              </font>
+              <textFill>
+                <Color red="0.624" green="0.624" blue="0.624" fx:id="x2" />
+              </textFill>
+            </Label>
+                  <TextField fx:id="textNumberOfQueen" layoutX="14.0" layoutY="76.0" prefHeight="26.0" prefWidth="66.0" text="1" />
+                  <Label layoutX="14.0" layoutY="57.0" text="By number of queen:" />
+                  <Button fx:id="buttonInsertFile" layoutX="14.0" layoutY="412.0" mnemonicParsing="false" onAction="#insertFile" text="Insert .txt File" />
+                  <Label fx:id="textFileInserted" layoutX="14.0" layoutY="440.0" maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="File inserted:">
+                     <font>
+                        <Font size="11.0" fx:id="x31" />
+                     </font>
+                     <textFill>
+                        <Color red="0.625" green="0.625" blue="0.625" fx:id="x41" />
+                     </textFill>
+                  </Label>
+                  <TextArea fx:id="textBoardConfig" layoutX="14.0" layoutY="127.0" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" />
+                  <Label layoutX="14.0" layoutY="109.0" text="By text:" />
+                  <Label layoutX="14.0" layoutY="393.0" text="By file:" />
+                  <Button fx:id="buttonEnter1" layoutX="88.0" layoutY="77.0" mnemonicParsing="false" onAction="#changeGrid" text="Enter" />
+                  <Button fx:id="buttonEnter2" layoutX="14.0" layoutY="332.0" mnemonicParsing="false" onAction="#changeGrid" text="Enter" />
+          </children>
+        </AnchorPane>
+        <ScrollPane prefWidth="399.0">
+          <content>
+            <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="545.0" prefWidth="430.0">
+              <children>
+                <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="Board" textAlignment="CENTER" textFill="$x2" wrapText="false" />
+                        <GridPane fx:id="grid" alignment="CENTER" prefHeight="402.0" prefWidth="402.0" AnchorPane.bottomAnchor="94.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="73.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Button fx:id="color1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="381.0" style="-fx-background-color: #888888;">
+                                 <GridPane.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </GridPane.margin>
+                              </Button>
+                           </children>
+                        </GridPane>
+                        <Label layoutX="14.0" layoutY="56.0" text="Press grids to change its color" />
+                        <Button fx:id="buttonCalculate" layoutX="22.0" layoutY="542.0" mnemonicParsing="false" onAction="#calculate" prefHeight="26.0" prefWidth="111.0" text="Calculate" />
+                        <CheckBox fx:id="checkBoxBacktrack" layoutX="22.0" layoutY="493.0" mnemonicParsing="false" text="Use backtracking" />
+                        <CheckBox fx:id="checkBoxShowStep" layoutX="22.0" layoutY="515.0" mnemonicParsing="false" text="Show step every" />
+                        <TextField fx:id="textNStep" layoutX="158.0" layoutY="510.0" prefHeight="26.0" prefWidth="60.0" snapToPixel="false" text="1" />
+                        <Label layoutX="222.0" layoutY="515.0" text="iteration for" />
+                        <TextField fx:id="textMStep" layoutX="304.0" layoutY="510.0" prefHeight="26.0" prefWidth="60.0" snapToPixel="false" text="1" />
+                        <Label layoutX="368.0" layoutY="515.0" text="ms" />
+                        <Button fx:id="buttonCancel" layoutX="147.0" layoutY="542.0" mnemonicParsing="false" onAction="#cancelCalculation" prefHeight="26.0" prefWidth="66.0" text="Cancel" />
+              </children>
+            </AnchorPane>
+          </content>
+        </ScrollPane>
+        <AnchorPane prefHeight="590.0" prefWidth="89.0">
+          <children>
+            <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="Solution" textAlignment="CENTER" textFill="$x2" wrapText="false" />
+                  <TextArea fx:id="textSolution" editable="false" layoutX="13.0" layoutY="56.0" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="285.0" promptText="Text solution will be displayed here">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets></TextArea>
+                  <Button fx:id="buttonSave" layoutX="13.0" layoutY="261.0" mnemonicParsing="false" onAction="#save" text="Save as .txt" />
+          </children>
+        </AnchorPane>
+      </items>
+    </SplitPane>
+    <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="ALWAYS">
+      <children>
+        <Label fx:id="textStatusLeft" maxHeight="1.7976931348623157E308" maxWidth="-1.0" HBox.hgrow="ALWAYS">
+          <font>
+            <Font size="11.0" fx:id="x3" />
+          </font>
+          <textFill>
+            <Color red="0.625" green="0.625" blue="0.625" fx:id="x4" />
+          </textFill>
+        </Label>
+        <Pane prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
+        <Label fx:id="textStatusRight" font="$x3" maxWidth="-1.0" textFill="$x4" HBox.hgrow="NEVER" />
+      </children>
+      <padding>
+        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+      </padding>
+    </HBox>
+  </children>
+</VBox>
