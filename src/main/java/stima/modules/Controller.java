@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashSet;
 import java.util.InputMismatchException;
 import java.util.ResourceBundle;
 
@@ -219,6 +220,19 @@ public class Controller implements Initializable {
     }
 
     public void calculate() {
+        HashSet<Character> colorSet = new HashSet<Character>();
+
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < n; j++) {
+                colorSet.add(m.getElmt(i, j));
+            }
+        }
+
+        if(colorSet.size() != n) {
+            textStatusLeft.setText("Error: Number of colors not the same as number of row/column");
+            return;
+        }
+
         cancelCalculation();
 
         if((checkBoxShowStep.isSelected() && !textNStep.getText().matches("^[0-9]+$") && !textMStep.getText().matches("^[0-9]+$"))
@@ -433,6 +447,29 @@ public class Controller implements Initializable {
                         return null;
                     }
 
+                    int[][] snapshot = new int[n][2];
+                    for(int i = 0; i < n; i++) {
+                        snapshot[i][0] = position[i][0];
+                        snapshot[i][1] = position[i][1];
+                    }
+                    final int[][] finalPos = snapshot;
+                    final int finalPlaced = placed;
+                    if(!isCancelled() && showStep && cases % nStep == 0){
+                        Platform.runLater(() -> {
+                            if (backgroundTask == null || backgroundTask.isCancelled()) {
+                                return;
+                            }
+                            if(finalPlaced == n){
+                                displayQueen(finalPos);
+                            }
+                        });
+                        try {
+                            Thread.sleep(mStep);
+                        } catch (InterruptedException e) {
+                            Thread.currentThread().interrupt();
+                        }
+                    }
+
                     if(placed == n) {
                         if(Algorithm.isValidAll(board, position)) {
                             break;
@@ -472,36 +509,6 @@ public class Controller implements Initializable {
                     
                     if(toMove < n-1) {
                         toMove++;
-                    }
-
-                    int[][] snapshot = new int[n][2];
-                    for(int i = 0; i < n; i++) {
-                        snapshot[i][0] = position[i][0];
-                        snapshot[i][1] = position[i][1];
-                    }
-                    final int[][] finalPos = snapshot;
-                    final int finalPlaced = placed;
-                    if(!isCancelled() && showStep && cases % nStep == 0){
-                        Platform.runLater(() -> {
-                            if (backgroundTask == null || backgroundTask.isCancelled()) {
-                                return;
-                            }
-                            if(finalPlaced == n){
-                                displayQueen(finalPos);
-                            }
-                        });
-                        try {
-                            Thread.sleep(mStep);
-                        } catch (InterruptedException e) {
-                            Thread.currentThread().interrupt();
-                        }
-                    }
-                }
-                
-                if(possible) {
-                    System.out.println("Possible to solve! Solution:");
-                    for(int i = 0; i < n; i++) {
-                        System.out.printf("Pos %d: (%d,%d)\n", i+1, position[i][0], position[i][1]);
                     }
                 }
                 
