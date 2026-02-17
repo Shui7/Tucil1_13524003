@@ -1,6 +1,8 @@
 # Penyelesaian Permainan Queens LinkedIn
 Tugas Kecil 1 IF2211 Strategi Algoritma Semester II 2025/2026
 
+Oleh: [13524003] Faiq Azzam Nafidz
+
 ## Deskripsi
 Program ini dapat menyelesaikan persoalan gim Queens dari LinkedIn menggunakan algoritma brute force dengan memeriksa seluruh kemungkinan posisi setiap queen pada papan permainan dan mengecek kevalidannya sesuai aturan gim.
 
