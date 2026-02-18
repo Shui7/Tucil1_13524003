@@ -34,32 +34,7 @@ import javafx.stage.Stage;
 import javafx.embed.swing.SwingFXUtils;
 
 enum charToColor {
-    A("#ff0000"),
-    B("#ff8000"),
-    C("#ffbf00"),
-    D("#ffff00"),
-    E("#bfff00"),
-    F("#80ff00"),
-    G("#00ff00"),
-    H("#00ff80"),
-    I("#00ffbf"),
-    J("#00ffff"),
-    K("#00bfff"),
-    L("#0080ff"),
-    M("#0000ff"),
-    N("#8000ff"),
-    O("#bf00ff"),
-    P("#ff00ff"),
-    Q("#ff80ff"),
-    R("#ffb0ff"),
-    S("#ffffff"),
-    T("#bbbbbb"),
-    U("#888888"),
-    V("#444444"),
-    W("#000000"),
-    X("#400000"),
-    Y("#800000"),
-    Z("#bf0000");
+    A("#ff0000"), B("#ff8000"), C("#ffbf00"), D("#ffff00"), E("#bfff00"), F("#80ff00"), G("#00ff00"), H("#00ff80"), I("#00ffbf"), J("#00ffff"), K("#00bfff"), L("#0080ff"), M("#0000ff"), N("#8000ff"), O("#bf00ff"), P("#ff00ff"), Q("#ff80ff"), R("#ffb0ff"), S("#ffffff"), T("#bbbbbb"), U("#888888"), V("#444444"), W("#000000"), X("#400000"), Y("#800000"), Z("#bf0000");
     private final String hex;
 
     charToColor(String hex) {
@@ -82,34 +57,24 @@ public class Controller implements Initializable {
 
     @FXML
     private TextField textNumberOfQueen;
-
     @FXML
     private TextArea textBoardConfig;
-
     @FXML
     private Label textFileInserted;
-
     @FXML
     private Label textStatusLeft;
-
     @FXML
     private Label textStatusRight;
-
     @FXML
     private GridPane grid;
-
     @FXML
     private CheckBox checkBoxBacktrack;
-
     @FXML
     private CheckBox checkBoxShowStep;
-
     @FXML
     private TextField textNStep;
-
     @FXML
     private TextField textMStep;
-
     @FXML
     private TextArea textSolution;
 
