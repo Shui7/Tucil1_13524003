@@ -1,0 +1,9 @@
+A#CDEE
+AAC#EE
+ACCDD#
+#ACCDF
+FF#FDF
+FFFF#F
+
+Waktu pencarian: 129.117756 ms
+Banyak kasus yang ditinjau: 533331 kasus

@@ -1,0 +1,10 @@
+AAA#AAA
+B#BBBBB
+BCBB#DD
+CCBBDE#
+#CBBDDD
+FCBBD#D
+CC#BDDD
+
+Waktu pencarian: 7660.528354 ms
+Banyak kasus yang ditinjau: 36532921 kasus

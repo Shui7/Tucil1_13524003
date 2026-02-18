@@ -3,5 +3,5 @@ CAB#
 #AAA
 AA#D
 
-Waktu pencarian: 16.457739 ms
+Waktu pencarian: 67.330998 ms
 Banyak kasus yang ditinjau: 741 kasus
